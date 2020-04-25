@@ -893,8 +893,131 @@ blank_row (struct window *w, struct glyph_row *row, int y)
 {
   int min_y, max_y;
 
-  min_y = WINDOW_TAB_LINE_HEIGHT (w) + WINDOW_HEADER_LINE_HEIGHT (w);
-  max_y = WINDOW_BOX_HEIGHT_NO_MODE_LINE (w);
+  min_y
+    = (window_wants_tab_line (w)
+         ? ((w)->tab_line_height >= 0
+              ? (w)->tab_line_height
+              : ((w)->tab_line_height
+                 = ((((w)->current_matrix) && ((w)->current_matrix)->rows
+                       ? ((w)->current_matrix)->rows->height
+                       : 0)
+                      ? (((w)->current_matrix) && ((w)->current_matrix)->rows
+                           ? ((w)->current_matrix)->rows->height
+                           : 0)
+                      : estimate_mode_line_height (
+                        (((void) (0 && (FRAMEP ((w)->frame)))),
+                         ((struct frame
+                             *) ((char *) XLP ((w)->frame)
+                                 - ((Lisp_Word_tag) (Lisp_Vectorlike)
+                                    << (((9223372036854775807L >> (3 - 1)) / 2
+                                         < (9223372036854775807L))
+                                          ? 0
+                                          : VALBITS))))),
+                        TAB_LINE_FACE_ID))))
+         : 0)
+      + WINDOW_HEADER_LINE_HEIGHT (w);
+  max_y
+    = ((w)->pixel_height
+       - ((((((w)->pixel_top + (w)->pixel_height)
+             == ((
+               (XWINDOW (((((void) (0 && (FRAMEP ((((w))->frame))))),
+                           ((struct frame
+                               *) ((char *) XLP ((((w))->frame))
+                                   - ((Lisp_Word_tag) (Lisp_Vectorlike)
+                                      << (((9223372036854775807L >> (3 - 1)) / 2
+                                           < (9223372036854775807L))
+                                            ? 0
+                                            : VALBITS))))))
+                           ->root_window))
+                 ->pixel_top
+               + (XWINDOW (
+                    ((((void) (0 && (FRAMEP ((((w))->frame))))),
+                      ((struct frame
+                          *) ((char *) XLP ((((w))->frame))
+                              - ((Lisp_Word_tag) (Lisp_Vectorlike)
+                                 << (((9223372036854775807L >> (3 - 1)) / 2
+                                      < (9223372036854775807L))
+                                       ? 0
+                                       : VALBITS))))))
+                      ->root_window))
+                   ->pixel_height)))
+            && NILP (
+              (XWINDOW (((((void) (0 && (FRAMEP ((((w))->frame))))),
+                          ((struct frame
+                              *) ((char *) XLP ((((w))->frame))
+                                  - ((Lisp_Word_tag) (Lisp_Vectorlike)
+                                     << (((9223372036854775807L >> (3 - 1)) / 2
+                                          < (9223372036854775807L))
+                                           ? 0
+                                           : VALBITS))))))
+                          ->root_window))
+                ->next))
+           || EQ ((w)->prev,
+                  ((((void) (0 && (FRAMEP ((((w))->frame))))),
+                    ((struct frame *) ((char *) XLP ((((w))->frame))
+                                       - ((Lisp_Word_tag) (Lisp_Vectorlike)
+                                          << (((9223372036854775807L >> (3 - 1))
+                                                 / 2
+                                               < (9223372036854775807L))
+                                                ? 0
+                                                : VALBITS))))))
+                    ->root_window)
+           || (w)->pseudo_window_p)
+            ? 0
+            : FRAME_BOTTOM_DIVIDER_WIDTH (
+              ((((void) (0 && (FRAMEP ((((w))->frame))))),
+                ((struct frame *) ((char *) XLP ((((w))->frame))
+                                   - ((Lisp_Word_tag) (Lisp_Vectorlike)
+                                      << (((9223372036854775807L >> (3 - 1)) / 2
+                                           < (9223372036854775807L))
+                                            ? 0
+                                            : VALBITS))))))))
+       - (0 ? (
+            w->scroll_bar_height >= 0
+              ? w->scroll_bar_height
+              : ((((((void) (0 && (FRAMEP ((((w))->frame))))),
+                    ((struct frame *) ((char *) XLP ((((w))->frame))
+                                       - ((Lisp_Word_tag) (Lisp_Vectorlike)
+                                          << (((9223372036854775807L >> (3 - 1))
+                                                 / 2
+                                               < (9223372036854775807L))
+                                                ? 0
+                                                : VALBITS)))))))
+                   ->config_scroll_bar_height))
+            : 0)
+       - (window_wants_mode_line ((w)) ? (
+            (w)->mode_line_height >= 0
+              ? (w)->mode_line_height
+              : ((w)->mode_line_height
+                 = ((((w)->current_matrix) && ((w)->current_matrix)->rows
+                       ? (((w)->current_matrix)->rows
+                          + ((w)->current_matrix)->nrows - 1)
+                           ->height
+                       : 0)
+                      ? (((w)->current_matrix) && ((w)->current_matrix)->rows
+                           ? (((w)->current_matrix)->rows
+                              + ((w)->current_matrix)->nrows - 1)
+                               ->height
+                           : 0)
+                      : estimate_mode_line_height (
+                        (((void) (0 && (FRAMEP ((w)->frame)))),
+                         ((struct frame
+                             *) ((char *) XLP ((w)->frame)
+                                 - ((Lisp_Word_tag) (Lisp_Vectorlike)
+                                    << (((9223372036854775807L >> (3 - 1)) / 2
+                                         < (9223372036854775807L))
+                                          ? 0
+                                          : VALBITS))))),
+                        (((!globals.f_mode_line_in_non_selected_windows
+                           || ((w)) == XWINDOW (selected_window)
+                           || (minibuf_level > 0
+                               && !NILP (minibuf_selected_window)
+                               && (XWINDOW (selected_window))
+                                    == XWINDOW (minibuf_window)
+                               && ((w)) == XWINDOW (minibuf_selected_window)))
+                            ? MODE_LINE_FACE_ID
+                            : MODE_LINE_INACTIVE_FACE_ID))))))
+                                       : 0));
 
   clear_glyph_row (row);
   row->y = y;

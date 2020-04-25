@@ -136,7 +136,7 @@ int _cdecl _spawnlp (int, const char *, const char *, ...);
 #endif
 
 /* Declare here, including term.h is problematic on some systems.  */
-extern void tputs (const char *, int, int (*)(int));
+//extern void tputs (const char *, int, int (*)(int));
 
 static const int baud_convert[] =
   {

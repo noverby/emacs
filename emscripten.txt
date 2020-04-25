@@ -1,0 +1,20 @@
+[binaries]
+c = '/home/noverby/Work/git/emsdk/upstream/emscripten/emcc'
+cpp = '/home/noverby/Work/git/emsdk/upstream/emscripten/em++'
+ar = '/home/noverby/Work/git/emsdk/upstream/emscripten/emar'
+ld = '/home/noverby/Work/git/emsdk/upstream/bin/wasm-ld'
+pkgconfig = '/usr/bin/pkg-config'
+
+[properties]
+root = '/home/noverby/Work/git/emsdk/upstream/emscripten/system'
+c_args = ['-s', 'WASM=1', '-s', 'EXPORT_ALL=1', '-s', 'USE_PTHREADS=1', '-g']
+c_link_args = ['-s','EXPORT_ALL=1', '-s', 'USE_PTHREADS=1', '-g4', '--source-map-base', 'http://localhost:8080/']
+cpp_args = ['-s', 'WASM=1', '-s', 'EXPORT_ALL=1', '-s', 'USE_PTHREADS=1', '-g']
+cpp_link_args = ['-s', 'EXPORT_ALL=1', '-s', 'USE_PTHREADS=1', '-g4', '--source-map-base', 'http://localhost:8080/']
+
+[host_machine]
+system = 'emscripten'
+cpu_family = 'wasm32'
+cpu = 'wasm32'
+linker_id = 'ld.wasm'
+endian = 'little'

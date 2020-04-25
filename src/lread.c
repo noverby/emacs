@@ -1604,6 +1604,15 @@ openp (Lisp_Object path, Lisp_Object str, Lisp_Object suffixes,
 
   /* Go through all entries in the path and see whether we find the
      executable. */
+
+  static int val = 1;
+  if (val) {
+      message1 ("buuuuuuu");
+      message3 (path);
+      message1 ("baabuuuuuuu");
+      val = 0;
+  };
+
   FOR_EACH_TAIL_SAFE (path)
    {
     ptrdiff_t baselen, prefixlen;

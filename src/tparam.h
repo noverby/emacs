@@ -23,7 +23,7 @@ along with GNU Emacs.  If not, see <https://www.gnu.org/licenses/>.  */
 /* Don't try to include termcap.h.  On some systems, configure finds a
    non-standard termcap.h that the main build won't find.  */
 
-void tputs (const char *, int, int (*) (int));
+//void tputs (const char *, int, int (*) (int));
 int tgetent (char *, const char *);
 int tgetflag (const char *);
 int tgetnum (const char *);

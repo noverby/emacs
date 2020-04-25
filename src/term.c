@@ -4027,7 +4027,9 @@ init_tty (const char *name, const char *terminal_type, bool must_succeed)
   /* On some systems, tgetent tries to access the controlling
      terminal.  */
   block_tty_out_signal (&oldset);
+  puts(tty->termcap_term_buffer);
   status = tgetent (tty->termcap_term_buffer, terminal_type);
+
   if (tty->termcap_term_buffer[TERMCAP_BUFFER_SIZE - 1])
     emacs_abort ();
   unblock_tty_out_signal (&oldset);
